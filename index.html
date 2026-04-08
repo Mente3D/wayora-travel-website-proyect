@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Técnico-Comercial — Wayora Travel</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand: #0F6E56;
+    --brand-mid: #1D9E75;
+    --brand-light: #E1F5EE;
+    --brand-dark: #085041;
+    --accent: #BA7517;
+    --accent-light: #FAEEDA;
+    --gold: #EF9F27;
+    --gray-bg: #F8F7F4;
+    --gray-border: #E2E0D8;
+    --gray-text: #5F5E5A;
+    --text: #1a1a18;
+    --white: #ffffff;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
+    background: var(--gray-bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--brand);
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    color: white;
+    margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    border: 40px solid rgba(255,255,255,0.07);
+    pointer-events: none;
+  }
+  .header-left h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 28px; font-weight: 400; margin-bottom: 6px; }
+  .header-left p { font-size: 14px; opacity: 0.78; }
+  .header-left .sub { margin-top: 8px; font-size: 12px; opacity: 0.6; }
+  .header-right { text-align: right; font-size: 13px; opacity: 0.85; }
+  .header-right strong { display: block; font-size: 16px; font-weight: 500; opacity: 1; margin-bottom: 4px; }
+  .header-right span { display: block; margin-bottom: 2px; }
+  .version-badge {
+    display: inline-block;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 3rem; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--gray-border); }
+  .section-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
+  .section-intro { font-size: 14px; color: var(--gray-text); line-height: 1.7; margin-bottom: 1.5rem; }
+
+  /* ── MÓDULO 1: INFRAESTRUCTURA ── */
+  .infra-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .infra-card {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .ic-dot {
+    width: 36px; height: 36px;
+    background: var(--brand-light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+  .ic-dot svg { width: 18px; height: 18px; }
+  .infra-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--text); }
+  .infra-card p { font-size: 12px; color: var(--gray-text); line-height: 1.55; }
+
+  /* ── DIAGNÓSTICO ── */
+  .diag-list { display: flex; flex-direction: column; gap: 10px; }
+  .diag-q {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-left: 4px solid var(--brand-mid);
+    border-radius: 0 10px 10px 0;
+    padding: 12px 16px;
+  }
+  .q-badge {
+    background: var(--brand);
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 3px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .diag-q p { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .diag-q small { display: block; font-size: 11px; color: var(--gray-text); margin-top: 4px; }
+
+  /* ── ESCALERA DE SOLUCIONES ── */
+  .niveles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 800px) { .niveles-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .niveles-grid { grid-template-columns: 1fr; } }
+
+  .nivel-card {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s;
+  }
+  .nivel-card:hover { box-shadow: 0 4px 20px rgba(15,110,86,0.1); }
+  .nivel-card.rec { border: 2px solid var(--brand-mid); }
+
+  .nivel-head {
+    padding: 16px 16px 12px;
+    border-bottom: 1px solid var(--gray-border);
+  }
+  .nivel-num { font-size: 10px; color: var(--gray-text); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 3px; }
+  .nivel-name { font-size: 14px; font-weight: 500; line-height: 1.3; color: var(--text); }
+  .nivel-tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--brand-light);
+    color: var(--brand);
+    font-weight: 500;
+  }
+  .nivel-tag.rec-tag { background: var(--brand); color: white; }
+
+  .nivel-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+
+  .nb-pages { font-size: 12px; color: var(--gray-text); }
+  .nb-pages strong { color: var(--text); }
+
+  .detail-group h5 {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-text);
+    margin-bottom: 6px;
+  }
+  .detail-item { font-size: 12px; color: var(--text); padding: 2px 0; display: flex; gap: 6px; align-items: flex-start; line-height: 1.4; }
+  .detail-item::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--brand-mid); flex-shrink: 0; margin-top: 5px; }
+
+  .inv-box {
+    background: var(--gray-bg);
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: auto;
+  }
+  .inv-label { font-size: 10px; color: var(--gray-text); margin-bottom: 3px; }
+  .inv-main { font-size: 15px; font-weight: 500; color: var(--brand); line-height: 1.3; }
+  .inv-usd { font-size: 11px; color: var(--gray-text); margin-bottom: 8px; }
+  .inv-rows { border-top: 1px solid var(--gray-border); padding-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .inv-row { display: flex; justify-content: space-between; font-size: 11px; }
+  .inv-row span:first-child { color: var(--gray-text); }
+  .inv-row span:last-child { color: var(--text); font-weight: 500; }
+
+  .nivel-entrega { font-size: 12px; color: var(--gray-text); margin-top: 8px; }
+  .nivel-entrega strong { color: var(--text); }
+
+  /* ── MATRIZ DE VARIABILIDAD ── */
+  .matrix-wrap { overflow-x: auto; }
+  table.matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--gray-border);
+  }
+  .matrix thead th {
+    background: var(--brand);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  .matrix tbody tr { border-bottom: 1px solid var(--gray-border); }
+  .matrix tbody tr:last-child { border-bottom: none; }
+  .matrix tbody tr:hover { background: var(--gray-bg); }
+  .matrix td { padding: 10px 14px; vertical-align: top; line-height: 1.45; }
+  .matrix td:first-child { font-weight: 500; white-space: nowrap; }
+  .bar-cell { display: flex; align-items: center; gap: 8px; }
+  .bar { height: 6px; border-radius: 3px; background: var(--brand-mid); }
+  .bar.alta { width: 90px; }
+  .bar.media { width: 55px; }
+  .bar.baja { width: 30px; }
+  .bar-label { font-size: 11px; color: var(--gray-text); }
+
+  /* ── OPERACIÓN CONTINUA ── */
+  .ops-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .ops-card {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .ops-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 8px; color: var(--text); border-bottom: 1px solid var(--gray-border); padding-bottom: 8px; }
+  .ops-item { font-size: 12px; color: var(--gray-text); padding: 3px 0; display: flex; gap: 6px; line-height: 1.4; }
+  .ops-item::before { content: '—'; color: var(--brand-mid); flex-shrink: 0; }
+  .ops-carga {
+    background: var(--brand-light);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .ops-carga h5 { font-size: 12px; font-weight: 500; color: var(--brand-dark); margin-bottom: 10px; }
+  .ops-carga-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  @media (max-width: 600px) { .ops-carga-grid { grid-template-columns: 1fr 1fr; } }
+  .carga-item { background: white; border-radius: 8px; padding: 8px 10px; }
+  .carga-nivel { font-size: 11px; font-weight: 500; color: var(--brand); }
+  .carga-horas { font-size: 11px; color: var(--gray-text); }
+  .carga-costo { font-size: 13px; font-weight: 500; color: var(--text); margin-top: 2px; }
+
+  /* ── CRONOGRAMA ── */
+  .cron-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .cron-card {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .cron-head {
+    background: var(--gray-bg);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cron-head span:first-child { font-size: 12px; font-weight: 500; }
+  .cron-head span:last-child { font-size: 11px; color: var(--brand); }
+  .cron-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+  .cron-step { font-size: 12px; display: flex; gap: 8px; line-height: 1.45; }
+  .cron-step strong { color: var(--brand-dark); font-weight: 500; min-width: 70px; flex-shrink: 0; font-size: 11px; }
+  .cron-step span { color: var(--gray-text); }
+
+  /* ── TABLA RESUMEN ── */
+  .summary-wrap { overflow-x: auto; }
+  table.summary {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .summary thead th {
+    background: var(--brand);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 11px;
+  }
+  .summary thead th:not(:first-child) { text-align: right; }
+  .summary td { padding: 9px 14px; border-bottom: 1px solid var(--gray-border); }
+  .summary td:not(:first-child) { text-align: right; }
+  .summary tr:last-child td { border-bottom: none; }
+  .summary .rec-row td { background: var(--brand-light); }
+  .summary .rec-row td:first-child { color: var(--brand); font-weight: 500; }
+  .summary-note { font-size: 11px; color: var(--gray-text); margin-top: 10px; line-height: 1.5; }
+
+  /* ── COSTOS ADICIONALES ── */
+  .adiciones-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+  .ad-item {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .ad-name { font-size: 12px; color: var(--gray-text); margin-bottom: 3px; }
+  .ad-price { font-size: 14px; font-weight: 500; color: var(--text); }
+  .ad-when { font-size: 11px; color: var(--brand); margin-top: 4px; }
+
+  /* ── RECOMENDACIÓN ── */
+  .rec-box {
+    background: var(--brand);
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .rec-box::before {
+    content: '';
+    position: absolute;
+    left: -80px; bottom: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 50px solid rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+  .rec-box h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; font-weight: 400; margin-bottom: 1.5rem; }
+  .rec-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  @media (max-width: 600px) { .rec-cols { grid-template-columns: 1fr; } }
+  .rec-col h4 { font-size: 13px; font-weight: 500; opacity: 0.85; margin-bottom: 8px; }
+  .rec-col p { font-size: 13px; opacity: 0.75; line-height: 1.65; }
+  .rec-ruta { margin-top: 1.5rem; }
+  .rec-ruta h4 { font-size: 13px; font-weight: 500; opacity: 0.85; margin-bottom: 10px; }
+  .ruta-step {
+    font-size: 12px;
+    opacity: 0.75;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    gap: 10px;
+    line-height: 1.4;
+  }
+  .ruta-step:last-child { border-bottom: none; }
+  .ruta-step .rs-month { font-weight: 500; opacity: 1; white-space: nowrap; flex-shrink: 0; font-size: 11px; min-width: 80px; }
+  .rec-divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 1.5rem 0; }
+  .rec-footer { font-size: 12px; opacity: 0.65; line-height: 1.6; }
+  .rec-footer a { color: rgba(255,255,255,0.9); }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--gray-border);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--gray-text);
+  }
+  .footer a { color: var(--brand); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media print {
+    body { background: white; }
+    .page-wrap { padding: 1rem; }
+    .nivel-card:hover { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Propuesta Técnico-Comercial</h1>
+      <p>Wayora Travel · Arquitectura Digital · Ecosistema Web · SEO</p>
+      <p class="sub">Elaborada por: Arquitecto Digital Senior — Travel &amp; Hospitality</p>
+    </div>
+    <div class="header-right">
+      <strong>Yuly Andrea Jiménez Muñoz</strong>
+      <span>Medellín, Colombia</span>
+      <span>TRM referencia: $4.200 COP/USD</span>
+      <span>Abril 2026</span>
+      <span class="version-badge">Versión 4.0</span>
+    </div>
+  </div>
+
+  <!-- MÓDULO 1: SISTEMA COMO INFRAESTRUCTURA DINÁMICA -->
+  <div class="section">
+    <div class="section-label">Módulo 1 · Fundamento conceptual</div>
+    <div class="section-title">El sitio web como sistema distribuido y evolutivo</div>
+    <p class="section-intro">Un sitio web para una agencia de viajes no es un artefacto estático entregado en un momento puntual. Es un <strong>sistema distribuido, dinámico y evolutivo</strong> que opera dentro de un ecosistema digital interconectado. Su disponibilidad, rendimiento y capacidad de conversión dependen de múltiples capas técnicas, servicios en la nube, APIs externas y variables de mercado en tiempo real.</p>
+    <div class="infra-grid">
+      <div class="infra-card">
+        <div class="ic-dot">
+          <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="14" height="10" rx="2.5" stroke="#0F6E56" stroke-width="1.4"/><path d="M6 9h6M9 6v6" stroke="#0F6E56" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Ecosistema interconectado</h4>
+        <p>Integra servicios en la nube, APIs de pago (ePayco, Wompi), WhatsApp Business, Google Analytics 4 y redes sociales como canales de adquisición coordinados y medibles.</p>
+      </div>
+      <div class="infra-card">
+        <div class="ic-dot">
+          <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="6.5" stroke="#0F6E56" stroke-width="1.4"/><path d="M9 5v4l3.5 2" stroke="#0F6E56" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Dependencias operativas</h4>
+        <p>Disponibilidad (SLA 99.9%), rendimiento y seguridad dependen del hosting, CDN, actualizaciones del CMS y estado de las integraciones con terceros activas.</p>
+      </div>
+      <div class="infra-card">
+        <div class="ic-dot">
+          <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 14l4-8 3 5 2.5-3.5L16 14" stroke="#0F6E56" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4>Variables externas</h4>
+        <p>Cambios en algoritmos de Google, variaciones en demanda turística por temporada, actualizaciones tecnológicas de plataformas y comportamiento del viajero digital impactan el sistema continuamente.</p>
+      </div>
+      <div class="infra-card">
+        <div class="ic-dot">
+          <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12l4-4 3 3 4-5" stroke="#0F6E56" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="4" r="2" fill="#0F6E56"/></svg>
+        </div>
+        <h4>Naturaleza evolutiva</h4>
+        <p>El sistema debe diseñarse para escalar con el negocio: nuevos destinos, idiomas, temporadas y campañas requieren arquitectura modular adaptable desde el inicio.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÓDULO 2: DIAGNÓSTICO -->
+  <div class="section">
+    <div class="section-label">Módulo 2 · Diagnóstico estratégico</div>
+    <div class="section-title">Preguntas clave para definir la solución óptima</div>
+    <p class="section-intro">La propuesta de nivel específico se activa únicamente con respuestas completas. Cada pregunta impacta directamente la arquitectura técnica, el stack y los costos asociados.</p>
+    <div class="diag-list">
+      <div class="diag-q">
+        <span class="q-badge">P1</span>
+        <div><p>¿Cuáles son los 2–3 servicios principales de Wayora Travel? (tours locales Medellín, paquetes nacionales, viajes internacionales, experiencias temáticas, turismo corporativo)</p><small>Impacto: define la estructura de silo SEO, cantidad de páginas de destino y schemas Schema Markup requeridos.</small></div>
+      </div>
+      <div class="diag-q">
+        <span class="q-badge">P2</span>
+        <div><p>¿La venta se cierra por WhatsApp, formulario web, llamada telefónica o se requiere sistema de reservas con pago online?</p><small>Impacto: determina si se integra pasarela de pago (+$800K–$1.5M COP) y define el nivel mínimo viable.</small></div>
+      </div>
+      <div class="diag-q">
+        <span class="q-badge">P3</span>
+        <div><p>¿El cliente objetivo es local (Medellín/Antioquia), nacional (Colombia) o incluye turistas extranjeros (LATAM, USA, Europa)?</p><small>Impacto: define la estrategia SEO: local, nacional con silo, o internacional con hreflang y contenido en inglés.</small></div>
+      </div>
+      <div class="diag-q">
+        <span class="q-badge">P4</span>
+        <div><p>¿Wayora Travel ya cuenta con: (a) identidad de marca diseñada, (b) fotografías profesionales de destinos, (c) textos de servicios redactados?</p><small>Impacto: sin activos disponibles, incremento de +$400K–$800K COP en producción y hasta 2 semanas más de plazo.</small></div>
+      </div>
+      <div class="diag-q">
+        <span class="q-badge">P5</span>
+        <div><p>¿Cuál es el rango de inversión disponible? (A) Hasta $3M COP → N1 · (B) $3M–$8M → N2 · (C) $8M–$18M → N3 · (D) +$18M → N4. ¿En cuánto tiempo se necesita el sitio activo?</p><small>Impacto: establece el nivel de partida. Plazos inferiores al estándar generan sobrecosto del 15–20% por paralelización de trabajo.</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESCALERA DE SOLUCIONES -->
+  <div class="section">
+    <div class="section-label">Módulo 3 · Escalera de soluciones — 4 niveles</div>
+    <div class="section-title">Progresión técnica, operativa y de negocio</div>
+    <p class="section-intro">Cada nivel representa un incremento real y verificable en complejidad técnica, capacidad operativa, integraciones con sistemas externos y potencial de crecimiento del negocio. La progresión es lógica, escalable y compatible: un cliente puede comenzar en N1 y migrar a N3 sin refactorización total.</p>
+    <div class="niveles-grid">
+
+      <!-- N1 -->
+      <div class="nivel-card">
+        <div class="nivel-head">
+          <div class="nivel-num">Nivel 1</div>
+          <div class="nivel-name">Arranque Estratégico</div>
+          <span class="nivel-tag">Entrada</span>
+        </div>
+        <div class="nivel-body">
+          <div class="nb-pages"><strong>4–6 páginas</strong> · WordPress + hosting compartido · sistema monolítico</div>
+          <div class="detail-group">
+            <h5>Arquitectura</h5>
+            <div class="detail-item">Home</div>
+            <div class="detail-item">Servicios / Tours</div>
+            <div class="detail-item">Sobre Nosotros</div>
+            <div class="detail-item">Contacto + CTA WhatsApp</div>
+          </div>
+          <div class="detail-group">
+            <h5>Stack técnico</h5>
+            <div class="detail-item">SEO on-page: meta tags, Schema LocalBusiness, Google Business Profile, Sitemap, SSL</div>
+            <div class="detail-item">Botón WhatsApp flotante + formulario de contacto</div>
+            <div class="detail-item">Optimización básica de velocidad e imágenes</div>
+          </div>
+          <div class="inv-box">
+            <div class="inv-label">Inversión total primer año</div>
+            <div class="inv-main">$2.352.000 – $4.052.000 COP</div>
+            <div class="inv-usd">USD 560 – 965 · promedio $3.532.000 COP</div>
+            <div class="inv-rows">
+              <div class="inv-row"><span>Desarrollo web</span><span>$1.8M – $3.5M</span></div>
+              <div class="inv-row"><span>Infraestructura anual</span><span>$552.000</span></div>
+              <div class="inv-row"><span>Mantenimiento/mes</span><span>$275.000</span></div>
+            </div>
+          </div>
+          <div class="nivel-entrega">Entrega: <strong>2–3 semanas</strong></div>
+        </div>
+      </div>
+
+      <!-- N2 -->
+      <div class="nivel-card rec">
+        <div class="nivel-head">
+          <div class="nivel-num">Nivel 2</div>
+          <div class="nivel-name">Posicionamiento Competitivo</div>
+          <span class="nivel-tag rec-tag">★ Recomendado</span>
+        </div>
+        <div class="nivel-body">
+          <div class="nb-pages"><strong>12–18 páginas</strong> · WordPress + Elementor Pro + CDN · arquitectura silo</div>
+          <div class="detail-group">
+            <h5>Arquitectura</h5>
+            <div class="detail-item">Home + Tours (madre + hijos por tipo)</div>
+            <div class="detail-item">Destinos + Blog SEO</div>
+            <div class="detail-item">Sobre Nosotros + Testimonios</div>
+            <div class="detail-item">Contacto segmentado por servicio</div>
+          </div>
+          <div class="detail-group">
+            <h5>Stack técnico</h5>
+            <div class="detail-item">Schema TouristTrip / FAQPage / Review · Core Web Vitals optimizados</div>
+            <div class="detail-item">30–50 keywords objetivo · Rank Math SEO Pro</div>
+            <div class="detail-item">WhatsApp segmentado por servicio · popups captación exit-intent</div>
+          </div>
+          <div class="inv-box">
+            <div class="inv-label">Inversión primer año (sin SEO recurrente)</div>
+            <div class="inv-main">$6.500.000 – $12.952.000 COP</div>
+            <div class="inv-usd">USD 1.548 – 3.084 · promedio $10.202.000 COP</div>
+            <div class="inv-rows">
+              <div class="inv-row"><span>Desarrollo web</span><span>$5M – $9M</span></div>
+              <div class="inv-row"><span>SEO inicial</span><span>$1.5M – $3M</span></div>
+              <div class="inv-row"><span>Infraestructura anual</span><span>$952.000</span></div>
+              <div class="inv-row"><span>Mantenimiento/mes</span><span>$600.000</span></div>
+              <div class="inv-row"><span>SEO mensual (opcional)</span><span>$900K – $2.2M</span></div>
+            </div>
+          </div>
+          <div class="nivel-entrega">Entrega: <strong>4–6 semanas</strong></div>
+        </div>
+      </div>
+
+      <!-- N3 -->
+      <div class="nivel-card">
+        <div class="nivel-head">
+          <div class="nivel-num">Nivel 3</div>
+          <div class="nivel-name">Conversión y Automatización</div>
+          <span class="nivel-tag">Avanzado</span>
+        </div>
+        <div class="nivel-body">
+          <div class="nb-pages"><strong>25–40 páginas + blog</strong> · VPS + Cloudflare + pasarela de pago</div>
+          <div class="detail-group">
+            <h5>Arquitectura</h5>
+            <div class="detail-item">Sistema de reservas con confirmación automática</div>
+            <div class="detail-item">Blog SEO (5 artículos base) + FAQ SEO</div>
+            <div class="detail-item">Políticas, pagos y formularios avanzados</div>
+          </div>
+          <div class="detail-group">
+            <h5>Integraciones</h5>
+            <div class="detail-item">ePayco / Wompi · WhatsApp Business API</div>
+            <div class="detail-item">GA4 + Search Console + Pixel Meta Ads</div>
+            <div class="detail-item">Cotizador interactivo + email automático post-reserva</div>
+          </div>
+          <div class="inv-box">
+            <div class="inv-label">Inversión primer año (sin SEO recurrente)</div>
+            <div class="inv-main">$14.200.000 – $24.552.000 COP</div>
+            <div class="inv-usd">USD 3.381 – 5.846 · promedio $20.752.000 COP</div>
+            <div class="inv-rows">
+              <div class="inv-row"><span>Desarrollo web</span><span>$10M – $18M</span></div>
+              <div class="inv-row"><span>SEO setup</span><span>$3M – $5M</span></div>
+              <div class="inv-row"><span>Pasarela pago</span><span>$1.200.000</span></div>
+              <div class="inv-row"><span>Infraestructura anual</span><span>$1.552.000</span></div>
+              <div class="inv-row"><span>Mantenimiento/mes</span><span>$1.000.000</span></div>
+              <div class="inv-row"><span>SEO mensual</span><span>$1.5M – $3M</span></div>
+            </div>
+          </div>
+          <div class="nivel-entrega">Entrega: <strong>6–10 semanas</strong></div>
+        </div>
+      </div>
+
+      <!-- N4 -->
+      <div class="nivel-card">
+        <div class="nivel-head">
+          <div class="nivel-num">Nivel 4</div>
+          <div class="nivel-name">Ecosistema Digital Premium</div>
+          <span class="nivel-tag">Premium</span>
+        </div>
+        <div class="nivel-body">
+          <div class="nb-pages"><strong>50+ páginas + blog + landings</strong> · WordPress headless / VPS Cloud</div>
+          <div class="detail-group">
+            <h5>Arquitectura</h5>
+            <div class="detail-item">Todo N3 + Landing pages de temporada</div>
+            <div class="detail-item">CRM integrado (HubSpot / Zoho)</div>
+            <div class="detail-item">Portal cotización avanzado + afiliados</div>
+          </div>
+          <div class="detail-group">
+            <h5>Integraciones</h5>
+            <div class="detail-item">WhatsApp Business API automatizado + chatbot</div>
+            <div class="detail-item">Email marketing automation + chat en vivo</div>
+            <div class="detail-item">SEO premium: 10–15 backlinks/mes, Digital PR, AEO avanzado</div>
+          </div>
+          <div class="inv-box">
+            <div class="inv-label">Inversión primer año (sin SEO recurrente)</div>
+            <div class="inv-main">$27.000.000 – $57.552.000 COP</div>
+            <div class="inv-usd">USD 6.429 – 13.703 · promedio $43.752.000 COP</div>
+            <div class="inv-rows">
+              <div class="inv-row"><span>Desarrollo web</span><span>$18M – $35M</span></div>
+              <div class="inv-row"><span>SEO Q1</span><span>$7M – $15M</span></div>
+              <div class="inv-row"><span>CRM + reservas</span><span>$2M – $5M</span></div>
+              <div class="inv-row"><span>Infraestructura anual</span><span>$2.552.000</span></div>
+              <div class="inv-row"><span>Mantenimiento/mes</span><span>$1.600.000</span></div>
+              <div class="inv-row"><span>SEO mensual</span><span>$2.5M – $6M</span></div>
+            </div>
+          </div>
+          <div class="nivel-entrega">Entrega: <strong>10–16 semanas</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MÓDULO VARIABILIDAD DE PRECIOS -->
+  <div class="section">
+    <div class="section-label">Módulo 4 · Variabilidad de precios</div>
+    <div class="section-title">Factores determinantes de la inversión</div>
+    <p class="section-intro">La variación en los rangos responde a variables técnicas concretas y medibles. Este módulo establece la relación explícita entre requerimientos del cliente, complejidad técnica y costo, permitiendo estimaciones reproducibles y reduciendo ambigüedad comercial.</p>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th style="width:18%">Variable técnica</th>
+            <th style="width:28%">Impacto en el sistema</th>
+            <th style="width:14%">Incidencia</th>
+            <th style="width:25%">Ejemplo Wayora Travel</th>
+            <th style="width:15%">Rango COP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Alcance funcional</strong></td>
+            <td>Nº de páginas, secciones y flujos de usuario. Páginas de tour detalladas son 4–6x más complejas que páginas estáticas.</td>
+            <td><div class="bar-cell"><div class="bar alta"></div><span class="bar-label">Alta</span></div></td>
+            <td>De 4 págs. (N1) a 50+ con landings de temporada (N4)</td>
+            <td>$150K–$500K por página adicional</td>
+          </tr>
+          <tr>
+            <td><strong>Personalización</strong></td>
+            <td>Template base (20–40h diseño) vs. Design System original desde Figma (80–160h). Impacta diferenciación de marca.</td>
+            <td><div class="bar-cell"><div class="bar alta"></div><span class="bar-label">Alta</span></div></td>
+            <td>N1: template · N4: Design System completo + componentes</td>
+            <td>$1M–$5M según originalidad</td>
+          </tr>
+          <tr>
+            <td><strong>Arquitectura del sistema</strong></td>
+            <td>Hosting compartido monolítico vs. VPS + CDN + headless. Cada capa adicional suma 4–12h de configuración DevOps.</td>
+            <td><div class="bar-cell"><div class="bar alta"></div><span class="bar-label">Alta</span></div></td>
+            <td>N1: shared hosting · N4: VPS/Cloud + Cloudflare Pro</td>
+            <td>$400K–$2.5M infraestructura y DevOps</td>
+          </tr>
+          <tr>
+            <td><strong>Integraciones externas</strong></td>
+            <td>APIs de terceros, pasarelas de pago, CRM, WhatsApp Business API. La pasarela de pago es la integración más costosa por compliance y pruebas.</td>
+            <td><div class="bar-cell"><div class="bar alta"></div><span class="bar-label">Alta</span></div></td>
+            <td>N1: ninguna · N3: ePayco + WA API · N4: CRM + reservas + automation</td>
+            <td>$300K–$1.5M por integración</td>
+          </tr>
+          <tr>
+            <td><strong>Volumen de contenido</strong></td>
+            <td>Nº de destinos, tours, artículos blog, FAQs y schemas. SEO técnico toma 1–3h por página; artículo blog 3–6h con investigación de keywords.</td>
+            <td><div class="bar-cell"><div class="bar media"></div><span class="bar-label">Media</span></div></td>
+            <td>N2: silo 30–50 keywords · N4: contenido mensual + linkbuilding</td>
+            <td>$80K–$200K por unidad optimizada</td>
+          </tr>
+          <tr>
+            <td><strong>Seguridad y cumplimiento</strong></td>
+            <td>SSL básico vs. auditoría formal, protección bots, habeas data Colombia y GDPR para mercados internacionales.</td>
+            <td><div class="bar-cell"><div class="bar media"></div><span class="bar-label">Media</span></div></td>
+            <td>N3–N4: auditoría de vulnerabilidades + políticas formales + testing</td>
+            <td>$200K–$800K según alcance</td>
+          </tr>
+          <tr>
+            <td><strong>Core Web Vitals</strong></td>
+            <td>Optimización LCP &lt;2.5s, CLS &lt;0.1, FID &lt;100ms. Requiere WebP, lazy loading, CDN y auditoría en dispositivos reales. Suma 8–20h adicionales.</td>
+            <td><div class="bar-cell"><div class="bar media"></div><span class="bar-label">Media</span></div></td>
+            <td>N1: básico · N2+: WP Rocket + CDN + auditoría PageSpeed mensual</td>
+            <td>$300K–$800K optimización inicial</td>
+          </tr>
+          <tr>
+            <td><strong>Activos del cliente</strong></td>
+            <td>Existencia de identidad de marca, fotografías y textos reduce horas de producción. Su ausencia incrementa plazo y presupuesto significativamente.</td>
+            <td><div class="bar-cell"><div class="bar media"></div><span class="bar-label">Media</span></div></td>
+            <td>Sin activos: +$400K–$800K en producción + hasta 2 semanas más</td>
+            <td>$400K–$1.5M si no disponibles</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MÓDULO OPERACIÓN CONTINUA -->
+  <div class="section">
+    <div class="section-label">Módulo 5 · Operación continua post-lanzamiento</div>
+    <div class="section-title">El sitio web como sistema en operación permanente</div>
+    <p class="section-intro">Los costos recurrentes no son servicios opcionales: reflejan la carga operativa real de mantener un sistema digital activo, seguro y posicionado. Su ausencia genera degradación técnica progresiva, pérdida de rankings y vulnerabilidades de seguridad que pueden resultar en caídas del sitio o pérdida de datos.</p>
+    <div class="ops-grid">
+      <div class="ops-card">
+        <h4>Mantenimiento correctivo</h4>
+        <div class="ops-item">Resolución de bugs y errores en producción (formularios, 404, pagos)</div>
+        <div class="ops-item">Actualización de plugins, temas y WordPress core (seguridad crítica)</div>
+        <div class="ops-item">Monitoreo de uptime con alertas automáticas (SLA 99.9%)</div>
+        <div class="ops-item">Backups automatizados diarios y restauración ante fallos</div>
+      </div>
+      <div class="ops-card">
+        <h4>Mantenimiento preventivo y evolutivo</h4>
+        <div class="ops-item">Revisión mensual de Core Web Vitals y velocidad de carga</div>
+        <div class="ops-item">Auditoría de seguridad y análisis de vulnerabilidades</div>
+        <div class="ops-item">Adaptación a cambios de algoritmo de Google (Core Updates)</div>
+        <div class="ops-item">Nuevas funcionalidades según evolución del negocio de Wayora Travel</div>
+      </div>
+      <div class="ops-card">
+        <h4>Gestión de contenido y SEO</h4>
+        <div class="ops-item">Publicación y optimización on-page de artículos de blog</div>
+        <div class="ops-item">Actualización de precios, paquetes y disponibilidad por temporada</div>
+        <div class="ops-item">Reporte mensual: keywords rankeadas, tráfico orgánico, CTR</div>
+        <div class="ops-item">Gestión de reseñas y reputación digital en Google Business Profile</div>
+      </div>
+      <div class="ops-card">
+        <h4>Gestión de integraciones</h4>
+        <div class="ops-item">Verificación mensual de APIs activas (WhatsApp, ePayco/Wompi, CRM)</div>
+        <div class="ops-item">Revisión de flujos de conversión: formularios, botones, proceso reserva</div>
+        <div class="ops-item">Alertas y reporte en GA4, Search Console y Pixel Meta Ads</div>
+        <div class="ops-item">Gestión de correos corporativos y conectividad técnica</div>
+      </div>
+    </div>
+    <div class="ops-carga">
+      <h5>Carga operativa mensual estimada por nivel</h5>
+      <div class="ops-carga-grid">
+        <div class="carga-item"><div class="carga-nivel">N1 — Arranque</div><div class="carga-horas">4–6 h/mes</div><div class="carga-costo">$275.000 COP</div></div>
+        <div class="carga-item"><div class="carga-nivel">N2 — Posicionamiento</div><div class="carga-horas">8–12 h/mes</div><div class="carga-costo">$600.000 COP</div></div>
+        <div class="carga-item"><div class="carga-nivel">N3 — Conversión</div><div class="carga-horas">15–20 h/mes</div><div class="carga-costo">$1.000.000 COP</div></div>
+        <div class="carga-item"><div class="carga-nivel">N4 — Premium</div><div class="carga-horas">25–35 h/mes</div><div class="carga-costo">$1.600.000 COP</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRONOGRAMA -->
+  <div class="section">
+    <div class="section-label">Módulo 6 · Cronograma de implementación</div>
+    <div class="section-title">Entregables por semana según nivel seleccionado</div>
+    <div class="cron-grid">
+      <div class="cron-card">
+        <div class="cron-head"><span>N1 — Arranque Estratégico</span><span>2–3 semanas</span></div>
+        <div class="cron-body">
+          <div class="cron-step"><strong>Sem. 1</strong><span>Briefing, definición de estructura y recopilación de activos del cliente</span></div>
+          <div class="cron-step"><strong>Sem. 2–3</strong><span>Desarrollo WordPress, contenido SEO on-page, Schema LocalBusiness, configuración hosting</span></div>
+          <div class="cron-step"><strong>Entrega</strong><span>Sitio en vivo + Google Business Profile + capacitación básica</span></div>
+        </div>
+      </div>
+      <div class="cron-card">
+        <div class="cron-head"><span>N2 — Posicionamiento Competitivo</span><span>4–6 semanas</span></div>
+        <div class="cron-body">
+          <div class="cron-step"><strong>Sem. 1</strong><span>Auditoría SEO del mercado + arquitectura silo + wireframes de páginas clave</span></div>
+          <div class="cron-step"><strong>Sem. 2–3</strong><span>Diseño visual en Elementor Pro + aprobación iterativa del cliente</span></div>
+          <div class="cron-step"><strong>Sem. 4–5</strong><span>Desarrollo completo + WhatsApp segmentado + formularios por tour</span></div>
+          <div class="cron-step"><strong>Sem. 6</strong><span>QA + Core Web Vitals + lanzamiento + reporte SEO baseline</span></div>
+        </div>
+      </div>
+      <div class="cron-card">
+        <div class="cron-head"><span>N3 — Conversión y Automatización</span><span>6–10 semanas</span></div>
+        <div class="cron-body">
+          <div class="cron-step"><strong>Sem. 1–2</strong><span>Investigación SEO + arquitectura técnica + diseño UX/UI Figma</span></div>
+          <div class="cron-step"><strong>Sem. 3–4</strong><span>Aprobación diseños + configuración stack VPS + Cloudflare</span></div>
+          <div class="cron-step"><strong>Sem. 5–7</strong><span>Desarrollo + pasarela de pago + sistema de reservas + WhatsApp API</span></div>
+          <div class="cron-step"><strong>Sem. 8–9</strong><span>Contenido SEO (5 artículos) + QA completo + pruebas de conversión</span></div>
+          <div class="cron-step"><strong>Sem. 10</strong><span>Lanzamiento + Analytics + Pixel + informe técnico completo</span></div>
+        </div>
+      </div>
+      <div class="cron-card">
+        <div class="cron-head"><span>N4 — Ecosistema Premium</span><span>10–16 semanas</span></div>
+        <div class="cron-body">
+          <div class="cron-step"><strong>Sem. 1–3</strong><span>Estrategia digital + Design System + arquitectura técnica documentada</span></div>
+          <div class="cron-step"><strong>Sem. 4–6</strong><span>Diseño UX/UI completo con sistema de componentes + aprobación iterativa</span></div>
+          <div class="cron-step"><strong>Sem. 7–10</strong><span>Desarrollo + integraciones CRM / reservas / API / email automation</span></div>
+          <div class="cron-step"><strong>Sem. 11–13</strong><span>Contenido SEO + automatizaciones configuradas + QA integral</span></div>
+          <div class="cron-step"><strong>Sem. 14–15</strong><span>Testing de carga + auditoría de seguridad + optimización final</span></div>
+          <div class="cron-step"><strong>Sem. 16</strong><span>Lanzamiento oficial + formación del equipo + plan de contenido 3 meses</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLA RESUMEN -->
+  <div class="section">
+    <div class="section-label">Módulo 7 · Tabla resumen de inversiones</div>
+    <div class="section-title">Comparativo por nivel — primer año de operación</div>
+    <div class="summary-wrap">
+      <table class="summary">
+        <thead>
+          <tr>
+            <th>Nivel</th>
+            <th>Desarrollo web</th>
+            <th>SEO inicial</th>
+            <th>Infraest. anual</th>
+            <th>Mant./mes</th>
+            <th>Total 1er año</th>
+            <th>Total USD</th>
+            <th>Entrega</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>N1 — Arranque</td>
+            <td>$1.8M – $3.5M</td>
+            <td>Incluido</td>
+            <td>$552.000</td>
+            <td>$275.000</td>
+            <td>$2.35M – $4.05M</td>
+            <td>USD 560–965</td>
+            <td>2–3 sem.</td>
+          </tr>
+          <tr class="rec-row">
+            <td>N2 — Posicionamiento ★</td>
+            <td>$5M – $9M</td>
+            <td>$1.5M – $3M</td>
+            <td>$952.000</td>
+            <td>$600.000</td>
+            <td>$6.5M – $13M</td>
+            <td>USD 1.548–3.084</td>
+            <td>4–6 sem.</td>
+          </tr>
+          <tr>
+            <td>N3 — Conversión</td>
+            <td>$10M – $18M</td>
+            <td>$3M – $5M</td>
+            <td>$1.55M</td>
+            <td>$1.000.000</td>
+            <td>$14.2M – $24.6M</td>
+            <td>USD 3.381–5.846</td>
+            <td>6–10 sem.</td>
+          </tr>
+          <tr>
+            <td>N4 — Premium</td>
+            <td>$18M – $35M</td>
+            <td>$7M – $15M</td>
+            <td>$2.55M</td>
+            <td>$1.600.000</td>
+            <td>$27M – $57.6M</td>
+            <td>USD 6.429–13.703</td>
+            <td>10–16 sem.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="summary-note">★ Nivel recomendado para Wayora Travel. Los totales de primer año incluyen desarrollo, infraestructura anual y 12 meses de mantenimiento, pero excluyen SEO mensual recurrente y costos adicionales opcionales. TRM referencia: $4.200 COP/USD.</p>
+  </div>
+
+  <!-- COSTOS ADICIONALES -->
+  <div class="section">
+    <div class="section-label">Módulo 8 · Costos adicionales opcionales</div>
+    <div class="section-title">Servicios complementarios según necesidades</div>
+    <div class="adiciones-grid">
+      <div class="ad-item"><div class="ad-name">Redacción textos SEO por página</div><div class="ad-price">$80.000 – $150.000 COP</div><div class="ad-when">Si el cliente no provee textos propios</div></div>
+      <div class="ad-item"><div class="ad-name">Fotografía profesional de destinos</div><div class="ad-price">$200.000 – $500.000 por sesión</div><div class="ad-when">Si no hay banco de imágenes profesionales</div></div>
+      <div class="ad-item"><div class="ad-name">Registro de marca en SIC</div><div class="ad-price">$730.000 – $1.200.000 (único)</div><div class="ad-when">Recomendado para proteger la marca Wayora Travel</div></div>
+      <div class="ad-item"><div class="ad-name">Artículos de blog SEO externos</div><div class="ad-price">$80.000 – $200.000 por artículo</div><div class="ad-when">Producción adicional al incluido en cada nivel</div></div>
+      <div class="ad-item"><div class="ad-name">Pauta Google / Meta Ads</div><div class="ad-price">$500.000 – $2.000.000/mes</div><div class="ad-when">Adquisición pagada complementaria al SEO orgánico</div></div>
+      <div class="ad-item"><div class="ad-name">Correos Google Workspace</div><div class="ad-price">~$230.000/usuario/año</div><div class="ad-when">Para comunicación profesional @wayoratravel.com</div></div>
+      <div class="ad-item"><div class="ad-name">Entrega acelerada (Fast-Track)</div><div class="ad-price">+15–20% sobre el desarrollo</div><div class="ad-when">Si el plazo es inferior al cronograma estándar</div></div>
+    </div>
+  </div>
+
+  <!-- RECOMENDACIÓN ESTRATÉGICA FINAL -->
+  <div class="rec-box">
+    <h2>Recomendación estratégica final</h2>
+    <div class="rec-cols">
+      <div class="rec-col">
+        <h4>Nivel recomendado: N2 — Posicionamiento Competitivo</h4>
+        <p>Para Wayora Travel como agencia nueva con audiencia activa en Instagram y sin sitio web propio, el Nivel 2 representa el mejor equilibrio entre inversión inicial, capacidad de posicionamiento orgánico real y tiempo de retorno. Permite construir autoridad SEO en Google en 6–12 meses con arquitectura técnica escalable hacia N3 sin refactorización total del sistema.</p>
+      </div>
+      <div class="rec-col">
+        <h4>Condiciones para ir directamente a N3</h4>
+        <p>Si las respuestas al diagnóstico indican que la venta requiere pago online (P2), que el mercado objetivo incluye turistas extranjeros con hreflang (P3), o que el presupuesto disponible es el rango C–D ($8M+, P5), se recomienda ir directamente a N3 omitiendo N2.</p>
+      </div>
+    </div>
+    <div class="rec-ruta">
+      <h4>Ruta de escalabilidad sugerida para N2</h4>
+      <div class="ruta-step"><span class="rs-month">Mes 1–2</span><span>Lanzar N2 con SEO on-page completo, arquitectura silo y WhatsApp segmentado por servicio</span></div>
+      <div class="ruta-step"><span class="rs-month">Mes 3–6</span><span>Activar SEO mensual ($900K–$1.5M COP) para capturar tráfico orgánico de viajeros en Colombia</span></div>
+      <div class="ruta-step"><span class="rs-month">Mes 6–8</span><span>Evaluar volumen de consultas y tasa de cierre por WhatsApp para justificar migración a N3</span></div>
+      <div class="ruta-step"><span class="rs-month">Mes 8–12</span><span>Migrar a N3 si el volumen de reservas justifica inversión en pasarela de pago y automatización</span></div>
+      <div class="ruta-step"><span class="rs-month">Año 2</span><span>Evaluar N4 si el negocio diversifica a mercados internacionales o turismo corporativo</span></div>
+    </div>
+    <hr class="rec-divider">
+    <p class="rec-footer">Esta propuesta tiene validez de 30 días hábiles desde la fecha de emisión. Los valores están referenciados a TRM $4.200 COP/USD y pueden ajustarse según variación cambiaria. Para activar cotización de nivel específico, se requieren respuestas completas al diagnóstico (P1–P5). · <a href="https://wa.me/573006029988">wa.me/573006029988</a> · <a href="https://www.instagram.com/wayoratravelcol/">@wayoratravelcol</a></p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Wayora Travel · Medellín, Colombia · Arquitectura Digital v4.0 · Abril 2026</span>
+    <span>
+      <a href="https://wa.me/573006029988">WhatsApp: +57 300 602 9988</a> &nbsp;·&nbsp;
+      <a href="https://www.instagram.com/wayoratravelcol/">@wayoratravelcol</a>
+    </span>
+  </div>
+
+</div>
+</body>
+</html>
