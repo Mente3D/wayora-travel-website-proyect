@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta Personal — Yuli Andrea · Wayora Travel</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand: #0F6E56;
+    --brand-mid: #1D9E75;
+    --brand-light: #E1F5EE;
+    --brand-dark: #085041;
+    --accent: #BA7517;
+    --accent-light: #FAEEDA;
+    --gold: #EF9F27;
+    --gray-bg: #F8F7F4;
+    --gray-border: #E2E0D8;
+    --gray-text: #5F5E5A;
+    --text: #1a1a18;
+    --white: #ffffff;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
+    background: var(--gray-bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--brand);
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    color: white;
+    margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    border: 40px solid rgba(255,255,255,0.07);
+    pointer-events: none;
+  }
+  .header-left h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 28px; font-weight: 400; margin-bottom: 6px; }
+  .header-left p { font-size: 14px; opacity: 0.78; }
+  .header-left .sub { margin-top: 8px; font-size: 12px; opacity: 0.6; }
+  .header-right { text-align: right; font-size: 13px; opacity: 0.85; }
+  .header-right strong { display: block; font-size: 16px; font-weight: 500; opacity: 1; margin-bottom: 4px; }
+  .header-right span { display: block; margin-bottom: 2px; }
+  .version-badge {
+    display: inline-block;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 3rem; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--gray-border); }
+  .section-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
+  .section-intro { font-size: 14px; color: var(--gray-text); line-height: 1.7; margin-bottom: 1.5rem; }
+
+  /* ── CARTA: CUERPO DE TEXTO ── */
+  .carta-body {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 14px;
+    padding: 2.5rem 3rem;
+  }
+  .carta-saludo {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .carta-p {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+  .carta-p strong { font-weight: 500; color: var(--text); }
+  .carta-p em { color: var(--brand); font-style: normal; font-weight: 500; }
+
+  /* ── SEPARADOR INTERNO ── */
+  .carta-divider {
+    border: none;
+    border-top: 1px solid var(--gray-border);
+    margin: 2rem 0;
+  }
+
+  /* ── TÍTULO DE BLOQUE ── */
+  .carta-bloque-titulo {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  /* ── QUOTE / FRASE CLAVE ── */
+  .carta-quote {
+    background: var(--brand-light);
+    border-left: 4px solid var(--brand-mid);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .carta-quote p {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 15px;
+    color: var(--brand-dark);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── ALERTA / ADVERTENCIA ── */
+  .carta-alerta {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .carta-alerta p {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  .carta-alerta strong { color: var(--accent); }
+
+  /* ── PREGUNTA DIRECTA (estilo diag-q del original) ── */
+  .diag-list { display: flex; flex-direction: column; gap: 10px; }
+  .diag-q {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-left: 4px solid var(--brand-mid);
+    border-radius: 0 10px 10px 0;
+    padding: 12px 16px;
+  }
+  .q-badge {
+    background: var(--brand);
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 4px;
+    padding: 3px 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .diag-q p { font-size: 13px; color: var(--text); line-height: 1.5; font-weight: 500; }
+  .diag-q small { display: block; font-size: 11px; color: var(--gray-text); margin-top: 4px; font-weight: 300; }
+
+  /* ── ESCALERA (estilo nivel-card simplificado) ── */
+  .escalera-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 1.25rem 0;
+  }
+  @media (max-width: 760px) { .escalera-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .escalera-grid { grid-template-columns: 1fr; } }
+
+  .escalon {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .escalon-num {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-text);
+  }
+  .escalon-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .escalon-desc {
+    font-size: 11.5px;
+    color: var(--gray-text);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .escalon-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--gray-border);
+    margin-top: 4px;
+    overflow: hidden;
+  }
+  .escalon-fill { height: 100%; background: var(--brand-mid); border-radius: 2px; }
+
+  /* ── FIRMA ── */
+  .carta-firma {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-border);
+  }
+  .firma-cierre { font-size: 14px; color: var(--gray-text); margin-bottom: 1rem; font-weight: 300; }
+  .firma-nombre {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    color: var(--text);
+  }
+  .firma-rol {
+    font-size: 11px;
+    color: var(--gray-text);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  /* ── POSDATA ── */
+  .posdata-wrap {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: 14px;
+    padding: 1.5rem 2rem;
+    margin-top: 2rem;
+  }
+  .posdata-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .posdata-p {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+    font-weight: 300;
+  }
+  .posdata-p:last-child { margin-bottom: 0; }
+  .posdata-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 0.5rem;
+    font-size: 12.5px;
+    color: var(--brand);
+    text-decoration: none;
+    background: var(--brand-light);
+    border: 1px solid rgba(15,110,86,0.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: background 0.15s;
+    word-break: break-all;
+  }
+  .posdata-link:hover { background: #d0ede5; }
+  .posdata-link::before { content: '→'; }
+
+  /* ── REC-BOX (igual al original, para el cierre de colaboración) ── */
+  .rec-box {
+    background: var(--brand);
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .rec-box::before {
+    content: '';
+    position: absolute;
+    left: -80px; bottom: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 50px solid rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+  .rec-box h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 22px; font-weight: 400; margin-bottom: 1rem; }
+  .rec-box p { font-size: 14px; opacity: 0.82; line-height: 1.75; margin-bottom: 0.85rem; font-weight: 300; }
+  .rec-box p:last-child { margin-bottom: 0; }
+  .rec-box p strong { opacity: 1; font-weight: 500; }
+  .rec-divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 1.25rem 0; }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--gray-border);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--gray-text);
+  }
+  .footer a { color: var(--brand); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .header { padding: 2rem 1.5rem; }
+    .carta-body { padding: 1.75rem 1.5rem; }
+    .rec-box { padding: 2rem 1.5rem; }
+  }
+
+  @media print {
+    body { background: white; }
+    .page-wrap { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Carta Personal</h1>
+      <p>Wayora Travel · De amigo a amigo · Sin agenda comercial</p>
+      <p class="sub">Escrita por: Héctor — Arquitecto Digital Senior</p>
+    </div>
+    <div class="header-right">
+      <strong>Yuly Andrea Jiménez Muñoz</strong>
+      <span>Medellín, Colombia</span>
+      <span>Abril 2026</span>
+      <span class="version-badge">Colaboración · No cotización</span>
+    </div>
+  </div>
+
+  <!-- CUERPO DE LA CARTA -->
+  <div class="section">
+    <div class="section-label">Carta · Antes de arrancar</div>
+    <div class="section-title">Lo que necesitas saber antes de tomar cualquier decisión digital</div>
+
+    <div class="carta-body">
+
+      <p class="carta-saludo">Yuli,</p>
+
+      <p class="carta-p">Hace rato quería escribirte esto. No como arquitecto web, no como alguien que quiere un proyecto — como alguien que conoce lo que estás construyendo con Wayora y que ha visto demasiadas veces lo que le pasa a un negocio bueno cuando toma una mala decisión en su arranque digital por falta de información.</p>
+
+      <p class="carta-p">No por falta de inteligencia. No por falta de ganas. Por falta de alguien experto que hable claro sin querer sacar una tajada.</p>
+
+      <p class="carta-p">Desde siempre te he insistido en que primero hay que aprender un poco de todo esto para dar este paso con conciencia real. Y creo que todavía no dimensionas lo que arrancar un activo web significa para ti, tu bolsillo y tu empresa. <strong>Este proceso puede ser tu panacea o tu ruina</strong> — pero tampoco has visualizado todavía las ganancias concretas que hacerlo bien te traería.</p>
+
+      <p class="carta-p">Así que aquí voy. Sin filtro. Sin necesidad de venderte nada.</p>
+
+      <hr class="carta-divider">
+
+      <!-- BLOQUE 1 -->
+      <p class="section-label" style="margin-bottom:0.5rem;">Concepto base · Lo primero que debes entender</p>
+      <h2 class="carta-bloque-titulo">Ante todo: deja de llamarlo "sitio web" o "página web"</h2>
+
+      <p class="carta-p">Esas expresiones te engañan y juegan en tu contra desde el inicio, sin que lo notes. Cuando alguien dice "necesito la página web", el cerebro activa el mismo proceso que cuando dice "necesito un letrero para la puerta" o "necesito imprimir tarjetas de presentación". Algo que se hace una vez, se entrega y ya. Un consumible, no un activo. Un objeto sin peso real en la infraestructura de la empresa.</p>
+
+      <p class="carta-p">Lo que Wayora necesita no es un objeto. Es una <em>sede digital paralela</em> — abierta cuando estás dormida, cuando estás guiando un grupo por el Peñol, cuando estás atendiendo las necesidades de Amelia. Una sede que muestra tu cara real ante todos: clientes, proveedores, amigos y competidores. Que atiende, informa y deja satisfecho a un cliente nuevo o antiguo hasta que efectiviza una compra, todo sin que tú intervengas.</p>
+
+      <p class="carta-p">Una sede que le dice al mundo lo competitiva que eres. Que se posiciona en Google, que dialoga permanentemente con todos los robots, apps y plataformas del ecosistema de agencias, con todas las IA, sobre ti y sobre Wayora. Que captura clientes, automatiza respuestas, cierra ventas y hace entrar dinero de forma sistemática en tu cuenta mientras tú atiendes otras cosas.</p>
+
+      <div class="carta-alerta">
+        <p>Pero también — y esto es lo que casi nadie te dice — si no la cuidas, <strong>se deteriora en silencio</strong>. No hay puerta que se oxide a la vista. No hay pintura que se manche ni timbre que deje de sonar. Se va poniendo lenta. Pierde posiciones en Google. Acumula vulnerabilidades. Se convierte en un foco de espionaje abierto para tus competidores. Y un día descubres que llevas meses sin tráfico orgánico sin saber exactamente cuándo empezó. Eso no es hipotético. Es lo que le pasa a la mayoría de agencias pequeñas que construyeron algo bonito y creyeron que con eso era suficiente. Si no me crees, busca las estadísticas de pérdidas por implementación errónea del activo web — están por todas partes.</p>
+      </div>
+
+      <div class="carta-quote">
+        <p>Lo que vas a construir no es un proyecto que se termina. Es un sistema que empieza. Eso cambia todo: cómo lo planeas, cuánto presupuestas, a quién contratas y cómo mides si está funcionando.</p>
+      </div>
+
+      <hr class="carta-divider">
+
+      <!-- BLOQUE 2 -->
+      <p class="section-label" style="margin-bottom:0.5rem;">Verdad incómoda · Lo que nadie te cotiza</p>
+      <h2 class="carta-bloque-titulo">El costo real no es el que te van a cotizar</h2>
+
+      <p class="carta-p">Aquí es donde miles de personas se tropiezan todo el tiempo. Alguien llega con un precio de desarrollo que suena razonable, justo, incluso barato. Lo aceptas. Y a los seis meses ya estás pagando costos que nadie te explicó — plugins vencidos, hosting que falla justo cuando más tráfico tienes, hackeos, caídas, pérdida de ranking, actualizaciones que nadie hizo, seguridad comprometida.</p>
+
+      <p class="carta-p">Y lo peor no es el costo técnico. Lo peor es que tu imagen mundial queda comprometida de raíz. Todo el mundo te está comparando con la competencia y percibiendo a Wayora Travel como débil, de baja calidad, poco confiable. <strong>Esa percepción es lo que más cuesta recuperar.</strong></p>
+
+      <p class="carta-p">El costo honesto incluye: desarrollo, hosting serio, dominio, herramientas SEO, plugins premium si aplica, CDN, certificado SSL, mantenimiento mensual, la atención a mil detalles técnicos invisibles que se presentan a diario — detalles de concepto, de imagen, de reputación, de posicionamiento, de marketing, de integración y homogenización con tus campañas de leads en redes y otras apps. Alguien que esté pendiente de que todo funcione junto, en armonía y con consistencia. Eso tiene un valor anual real — no alto ni bajo en abstracto, simplemente real.</p>
+
+      <div class="carta-alerta">
+        <p>Cuando hables con cualquier proveedor, hazle esta pregunta directa: <strong>"¿Cuánto me cuesta esto en total durante el primer año, incluyendo todo?"</strong> Si no puede responderla desglosada y con claridad, te está cotizando solo el desarrollo y dejándote el resto a ti sin decírtelo.</p>
+      </div>
+
+      <hr class="carta-divider">
+
+    </div><!-- /carta-body -->
+  </div>
+
+  <!-- LAS 5 PREGUNTAS -->
+  <div class="section">
+    <div class="section-label">Diagnóstico previo · Antes de hablar con cualquier proveedor</div>
+    <div class="section-title">No existe el sitio ideal sin responder esto primero</div>
+    <p class="section-intro">Cinco preguntas que determinan absolutamente todo lo demás — diseño, tecnología, estructura, presupuesto. Sin responderlas, cualquier cotización es un disparo al aire.</p>
+    <div class="diag-list">
+      <div class="diag-q">
+        <span class="q-badge">P1</span>
+        <div>
+          <p>¿Quieres presencia o quieres ventas?</p>
+          <small>Son dos proyectos distintos en complejidad, tecnología y costo. Mezclarlos sin saberlo es el error más común — y el más caro de corregir.</small>
+        </div>
+      </div>
+      <div class="diag-q">
+        <span class="q-badge">P2</span>
+        <div>
+          <p>¿Quién produce contenido después del lanzamiento?</p>
+          <small>El SEO no es magia que se activa al publicar. Es consistencia en el tiempo. Si nadie está destinado a eso, hay que diseñar el sistema diferente desde el principio.</small>
+        </div>
+      </div>
+      <div class="diag-q">
+        <span class="q-badge">P3</span>
+        <div>
+          <p>¿Tus palabras clave están definidas o todavía es intuitivo?</p>
+          <small>Toda la arquitectura de información depende de esto. Definirlas después del desarrollo significa rediseñar estructura — que es exactamente lo que más cuesta.</small>
+        </div>
+      </div>
+      <div class="diag-q">
+        <span class="q-badge">P4</span>
+        <div>
+          <p>¿Estás lista para recibir pagos online?</p>
+          <small>Integrar pasarelas no es un botón que se activa. Es configuración, validación y cumplimiento legal que hay que prever desde la arquitectura inicial, no añadir después.</small>
+        </div>
+      </div>
+      <div class="diag-q">
+        <span class="q-badge">P5</span>
+        <div>
+          <p>¿En doce meses piensas local o ya tienes ojo en el turista extranjero?</p>
+          <small>"Planes turísticos en Medellín" y "travel agency Medellin Colombia" son audiencias distintas, intenciones distintas, a veces idioma distinto. Eso se diseña desde el inicio o se paga caro al modificarlo.</small>
+        </div>
+      </div>
+    </div>
+    <p class="section-intro" style="margin-top:1rem; margin-bottom:0;">No te las hago para complicarte. Te las hago porque sus respuestas determinan si tu proyecto de hoy es sencillo y alcanzable, o si tiene una complejidad que hay que planear con calma. En cualquier caso es manejable — pero saberlo de antemano es la diferencia entre un proceso tranquilo y uno lleno de sorpresas costosas.</p>
+  </div>
+
+  <!-- LA ESCALERA -->
+  <div class="section">
+    <div class="section-label">Madurez digital · La escalera que todo negocio recorre</div>
+    <div class="section-title">Hay una escalera. No tienes que subirla toda de una.</div>
+    <p class="section-intro">La madurez digital de un negocio es un proceso, no un evento. No existe el sitio perfecto que construyes hoy y te dura para siempre. Existe el sitio correcto para el momento en que está tu negocio — con la capacidad de evolucionar cuando el negocio lo pida.</p>
+
+    <div class="escalera-grid">
+      <div class="escalon">
+        <div class="escalon-num">Escalón 1</div>
+        <div class="escalon-name">Presencia sólida</div>
+        <div class="escalon-desc">Da confianza y muestra lo que eres. El punto de partida correcto si los recursos y el tiempo son acotados hoy.</div>
+        <div class="escalon-bar"><div class="escalon-fill" style="width:25%"></div></div>
+      </div>
+      <div class="escalon">
+        <div class="escalon-num">Escalón 2</div>
+        <div class="escalon-name">Posicionamiento activo</div>
+        <div class="escalon-desc">El sistema empieza a trabajar solo: genera leads, mide comportamiento, se posiciona en búsquedas específicas.</div>
+        <div class="escalon-bar"><div class="escalon-fill" style="width:50%"></div></div>
+      </div>
+      <div class="escalon">
+        <div class="escalon-num">Escalón 3</div>
+        <div class="escalon-name">Conversión y ventas</div>
+        <div class="escalon-desc">El sitio vende sin intermediación humana en cada paso. Recibe, informa, cotiza y cierra mientras tú haces otra cosa.</div>
+        <div class="escalon-bar"><div class="escalon-fill" style="width:75%"></div></div>
+      </div>
+      <div class="escalon" style="border-color: var(--brand-mid);">
+        <div class="escalon-num" style="color:var(--brand);">Escalón 4</div>
+        <div class="escalon-name">Activo empresarial</div>
+        <div class="escalon-desc">La presencia digital de Wayora vale tanto como tu flota o tus guías. CRM, automatización, expansión internacional.</div>
+        <div class="escalon-bar"><div class="escalon-fill" style="width:100%"></div></div>
+      </div>
+    </div>
+
+    <p class="section-intro" style="margin-bottom:0;">Empezar en el escalón correcto vale más que empezar en uno más alto que no puedes sostener, o en uno más bajo que te queda pequeño en seis meses y toca rehacer todo. Cuál es el tuyo hoy — eso lo determinan las cinco preguntas de arriba y una conversación honesta sobre dónde está Wayora y hacia dónde va.</p>
+  </div>
+
+  <!-- BLOQUE DE COLABORACIÓN (rec-box como en el original) -->
+  <div class="rec-box">
+    <h2>Lo más importante de todo esto</h2>
+    <p>Wayora tiene algo que la mayoría de agencias pequeñas no tienen: tú. Tú que entiendes de SEO, que piensas en audiencias, que ya hablas el idioma del posicionamiento real. Eso es un activo enorme que muchos desarrolladores no van a saber aprovechar porque entienden de código pero no de negocio.</p>
+    <p>Pero hay una pregunta que solo tú puedes responder: <strong>¿cuentas con el tiempo y la disponibilidad real para integrarte al proceso de construcción y revisión del sitio?</strong> Porque eso son muchas horas, muchas decisiones y mucha energía. Saberlo desde el principio define cómo se estructura todo lo demás.</p>
+    <hr class="rec-divider">
+    <p>Por eso me importa que entres a este proceso con los ojos abiertos. Conmigo o con alguien más con quien tengas más confianza o mejores condiciones — hazlo con esa persona, y con gusto te ayudo a hacerle las preguntas correctas antes de que firmes cualquier cosa.</p>
+    <p>Yo estoy disponible para acompañarte bajo un <strong>esquema de colaboración</strong> porque me interesa que Wayora escale bien — no facturar. Pero eso lo decidimos juntos, sin presión, cuando quieras y si quieres.</p>
+  </div>
+
+  <!-- CARTA CIERRE -->
+  <div class="section" style="margin-bottom:0;">
+    <div class="carta-body">
+      <div class="carta-quote">
+        <p>Lo que quiero que te lleves de esta carta no es una propuesta. Es una forma diferente de ver lo que estás a punto de construir — y con esa visión, cualquier decisión que tomes va a ser mejor.</p>
+      </div>
+      <p class="carta-p">Cuando quieras hablamos. Sin agenda, sin prisa.</p>
+      <div class="carta-firma">
+        <p class="firma-cierre">Con mucho cariño,</p>
+        <div class="firma-nombre">Héctor</div>
+        <div class="firma-rol">Arquitecto Digital Senior · Travel &amp; Hospitality · Tu amigo de siempre</div>
+      </div>
+    </div>
+
+    <!-- POSDATA -->
+    <div class="posdata-wrap">
+      <div class="posdata-label">Posdata</div>
+      <p class="posdata-p">De todas formas te diseñé un esquema profesional de precios que, más que una cotización, es un mapa de lo que debes esperar — con todo desglosado y con honestidad total.</p>
+      <p class="posdata-p">Lo coticé con un <strong>30% por debajo del mercado real</strong> de Colombia y Latinoamérica. Puedes verlo aquí cuando quieras, sin compromiso:</p>
+      <a class="posdata-link" href="https://menteen3d-creator.github.io/wayora-travel-website-proyect/" target="_blank">
+        menteen3d-creator.github.io/wayora-travel-website-proyect/
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Wayora Travel · Medellín, Colombia · Carta de colaboración · Abril 2026</span>
+    <span>
+      <a href="https://wa.me/573006029988">WhatsApp: +57 300 602 9988</a> &nbsp;·&nbsp;
+      <a href="https://www.instagram.com/wayoratravelcol/">@wayoratravelcol</a>
+    </span>
+  </div>
+
+</div>
+</body>
+</html>
